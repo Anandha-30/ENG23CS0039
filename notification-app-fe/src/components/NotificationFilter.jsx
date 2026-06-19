@@ -1,20 +1,20 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-
 const filters = ["All", "Placement", "Result", "Event"];
 
 export function NotificationFilter({ value, onChange }) {
   return (
-    <ToggleButtonGroup
-      value={value}
-      exclusive
-      size="small"
-      sx={{ flexWrap: "wrap", gap: 0.5 }}
-    >
+    <div className="filter-tabs" role="tablist" aria-label="Notification type">
       {filters.map((type) => (
-        <ToggleButton value={type} sx={{ textTransform: "none", px: 2 }}>
+        <button
+          className={value === type ? "filter-tab active" : "filter-tab"}
+          key={type}
+          onClick={() => onChange(type)}
+          role="tab"
+          aria-selected={value === type}
+          type="button"
+        >
           {type}
-        </ToggleButton>
+        </button>
       ))}
-    </ToggleButtonGroup>
+    </div>
   );
 }
